@@ -12,7 +12,7 @@ export function handleRequest(req, res, parsedUrl) {
       handleIndex(req, res);
       break;
     case "/json":
-      if (contentType === 'application/json') {
+      if (contentType.startsWith('application/json')) {
         handleJSON(req, res);
       } else {
         res.writeHead(400, { "Content-Type": "application/json" });
@@ -20,7 +20,7 @@ export function handleRequest(req, res, parsedUrl) {
       }
       break;
     case "/xml":
-      if (contentType === 'application/xml' || contentType === 'text/xml') {
+      if (contentType.startsWith('application/xml')) {
         handleXML(req, res);
       } else {
         res.writeHead(400, { "Content-Type": "application/json" });
@@ -28,7 +28,7 @@ export function handleRequest(req, res, parsedUrl) {
       }
       break;
     case "/urlencode":
-      if (contentType === 'application/x-www-form-urlencoded') {
+      if (contentType.startsWith('application/x-www-form-urlencoded')) {
         handleURLEncode(req, res);
       } else {
         res.writeHead(400, { "Content-Type": "application/json" });
